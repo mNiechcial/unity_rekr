@@ -9,122 +9,58 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
 
 
-	public class ruch {
-		int M; //macierz wzgledem ktorej jest wykonywany ruch
-		int pozycja_wej;
-		int pozycja_wyj;
-		float czas_ruchu;
-
-	}
-
-	public class timer {
-
-		public float endTime;
-		public Text timerText;
-
-		public timer (Text timerText_)
-		{
-			endTime = 10f;
-			timerText = timerText_;
-		}
-
-
-		float GetTime()
-		{
-			return (endTime);
-		}
-
-
-		public void CountTime () {
-
-			if (endTime > 0.0f) 
-			{
-				endTime -= Time.deltaTime;
-				timerText.text = endTime.ToString("0.0");
-			}
-
-			if (endTime <= 0.0f) 
-			{
-				timerText.text = ("KONIEC CZASU");	
-			}
-		}
-	}
 	public Text napis;
 	public timer czas;
 	public GameObject[] M1, M2, M3;
 	public GameObject[] pionki;
-	public bool legalityCheck = false;
+	public Vector2 mouseOver;
 
+	public pinPair[] pairs = new pinPair[10];
+	public pinPair jedna_para;
+	private GameObject pionek_temp;
 
-	void CheckLegality()
+	private void UpdateMouse()
 	{
-
-
-													//sprawdzam legalność
-
-		if (M1[3].CompareTag("occ") && M1[4].CompareTag("occ") && M1[5].CompareTag("Nocc"))
+		RaycastHit hit;
+		if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f))
 		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [3].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
+			mouseOver.x = (int)hit.point.x;
+			mouseOver.y = (int)hit.point.z;
 		}
-		if (M1[5].CompareTag("occ") && M1[4].CompareTag("occ") && M1[3].CompareTag("Nocc"))
+		else
 		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [5].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
+			mouseOver.x = -1;
+			mouseOver.y = -1;
 		}
-		if (M1[6].CompareTag("occ") && M1[7].CompareTag("occ") && M1[8].CompareTag("Nocc"))
+		if(hit.collider.tag == "Illegal")
 		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [6].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
-		}
-		if (M1[7].CompareTag("occ") && M1[8].CompareTag("occ") && M1[9].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [7].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
-		}
-		if (M1[8].CompareTag("occ") && M1[7].CompareTag("occ") && M1[6].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [8].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
-		}
-		if (M1[9].CompareTag("occ") && M1[8].CompareTag("occ") && M1[7].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == M1 [9].transform.position)
-					pionek.gameObject.tag = "legal";
-			}
+			pionek_temp = hit.collider.gameObject;
+			Debug.Log (pionek_temp);
 		}
 
-		legalityCheck = true; 		//kończę sprawdzanie
+	//Debug.Log(mouseOver);
+
 	}
 
 	// Use this for initialization
 	void Start () {
 		czas = new timer (napis);
+
+		//deklaracja par--------------------------------
+		for (int i = 0; i <= 9; i++) 
+		{
+			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.y);
+		}
+		pionek_temp = pairs[0].GetPin();
+		pionek_temp.SetActive (false);
+
+		//koniec deklaracji par--------------------------
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		czas.CountTime ();
-
-		if (!legalityCheck)
-			CheckLegality ();
+		UpdateMouse();
 
 	}
 
@@ -133,3 +69,69 @@ public class Player : MonoBehaviour {
 }
 
 
+
+/*
+ * 		
+
+ * funkcja nie dziala
+  void CheckLegality() //sprawdzam legalność, bledna funkcja, do poprawy
+	{
+		//for (int i = 1; 1<=3; i++)
+		//{
+			GameObject[] a = M1;				
+
+		if (a[3].CompareTag("occ") && a[4].CompareTag("occ") && a[5].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [3].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+		if (a[5].CompareTag("occ") && a[4].CompareTag("occ") && a[3].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [5].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+		if (a[6].CompareTag("occ") && a[7].CompareTag("occ") && a[8].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [6].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+		if (a[7].CompareTag("occ") && a[8].CompareTag("occ") && a[9].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [7].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+		if (a[8].CompareTag("occ") && a[7].CompareTag("occ") && a[6].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [8].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+		if (a[9].CompareTag("occ") && a[8].CompareTag("occ") && a[7].CompareTag("Nocc"))
+		{
+			foreach (GameObject pionek in pionki)
+			{
+				if (pionek.transform.position == a [9].transform.position)
+					pionek.gameObject.tag = "legal";
+
+			}
+		}
+ */

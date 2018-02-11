@@ -38,7 +38,7 @@ public class PickOnClick : MonoBehaviour {
 	{
 		if (gameObject.CompareTag ("legal")) {
 			movement = true;
-			Debug.Log ("mouse clicked");
+			Debug.Log ("mouse clicked on legal target");
 		}
 	}
 

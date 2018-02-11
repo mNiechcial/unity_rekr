@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class timer : MonoBehaviour {
+public class timer {
 
-	public float endTime = 10.0f;
+	public float endTime;
 	public Text timerText;
+
+	public timer (Text timerText_)
+	{
+		endTime = 60f;
+		timerText = timerText_;
+	}
+
 
 	float GetTime()
 	{
 		return (endTime);
 	}
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+	public void CountTime () {
 
 		if (endTime > 0.0f) 
 		{

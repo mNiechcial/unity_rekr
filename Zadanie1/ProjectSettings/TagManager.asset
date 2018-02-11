@@ -6,6 +6,10 @@ TagManager:
   tags:
   - cargo
   - light
+  - occ
+  - Nocc
+  - legal
+  - Illegal
   layers:
   - Default
   - TransparentFX
