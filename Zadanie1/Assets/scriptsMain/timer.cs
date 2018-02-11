@@ -7,6 +7,11 @@ public class timer : MonoBehaviour {
 
 	public float endTime = 10.0f;
 	public Text timerText;
+
+	float GetTime()
+	{
+		return (endTime);
+	}
 	// Use this for initialization
 	void Start () {
 		

@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 8825bfde5bb77c84fab19798a31b5a23
+timeCreated: 1518217088
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: PN-90/M-83002 A A 40x80:1
+    100002: PN-90/M-83002 A A 40x80:10
+    100004: PN-90/M-83002 A A 40x80:2
+    100006: PN-90/M-83002 A A 40x80:3
+    100008: PN-90/M-83002 A A 40x80:4
+    100010: PN-90/M-83002 A A 40x80:5
+    100012: PN-90/M-83002 A A 40x80:6
+    100014: PN-90/M-83002 A A 40x80:7
+    100016: PN-90/M-83002 A A 40x80:8
+    100018: PN-90/M-83002 A A 40x80:9
+    100020: tacka_easy:1
+    100022: //RootNode
+    400000: PN-90/M-83002 A A 40x80:1
+    400002: PN-90/M-83002 A A 40x80:10
+    400004: PN-90/M-83002 A A 40x80:2
+    400006: PN-90/M-83002 A A 40x80:3
+    400008: PN-90/M-83002 A A 40x80:4
+    400010: PN-90/M-83002 A A 40x80:5
+    400012: PN-90/M-83002 A A 40x80:6
+    400014: PN-90/M-83002 A A 40x80:7
+    400016: PN-90/M-83002 A A 40x80:8
+    400018: PN-90/M-83002 A A 40x80:9
+    400020: tacka_easy:1
+    400022: //RootNode
+    2300000: PN-90/M-83002 A A 40x80:1
+    2300002: PN-90/M-83002 A A 40x80:10
+    2300004: PN-90/M-83002 A A 40x80:2
+    2300006: PN-90/M-83002 A A 40x80:3
+    2300008: PN-90/M-83002 A A 40x80:4
+    2300010: PN-90/M-83002 A A 40x80:5
+    2300012: PN-90/M-83002 A A 40x80:6
+    2300014: PN-90/M-83002 A A 40x80:7
+    2300016: PN-90/M-83002 A A 40x80:8
+    2300018: PN-90/M-83002 A A 40x80:9
+    2300020: tacka_easy:1
+    3300000: PN-90/M-83002 A A 40x80:1
+    3300002: PN-90/M-83002 A A 40x80:10
+    3300004: PN-90/M-83002 A A 40x80:2
+    3300006: PN-90/M-83002 A A 40x80:3
+    3300008: PN-90/M-83002 A A 40x80:4
+    3300010: PN-90/M-83002 A A 40x80:5
+    3300012: PN-90/M-83002 A A 40x80:6
+    3300014: PN-90/M-83002 A A 40x80:7
+    3300016: PN-90/M-83002 A A 40x80:8
+    3300018: PN-90/M-83002 A A 40x80:9
+    3300020: tacka_easy:1
+    4300000: tacka_easy:1
+    4300002: PN-90/M-83002 A A 40x80:1
+    4300004: PN-90/M-83002 A A 40x80:2
+    4300006: PN-90/M-83002 A A 40x80:3
+    4300008: PN-90/M-83002 A A 40x80:4
+    4300010: PN-90/M-83002 A A 40x80:5
+    4300012: PN-90/M-83002 A A 40x80:6
+    4300014: PN-90/M-83002 A A 40x80:7
+    4300016: PN-90/M-83002 A A 40x80:8
+    4300018: PN-90/M-83002 A A 40x80:9
+    4300020: PN-90/M-83002 A A 40x80:10
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
