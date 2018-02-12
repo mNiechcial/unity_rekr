@@ -7,11 +7,13 @@ public class timer {
 
 	public float endTime;
 	public Text timerText;
+	public GameObject EndPanel;		
 
-	public timer (Text timerText_)
+	public timer (Text timerText_, GameObject EndPanel_)
 	{
 		endTime = 60f;
 		timerText = timerText_;
+		EndPanel = EndPanel_;
 	}
 
 
@@ -32,6 +34,7 @@ public class timer {
 		if (endTime <= 0.0f) 
 		{
 			timerText.text = ("KONIEC CZASU");	
+			EndPanel.gameObject.SetActive (true);
 		}
 	}
 }

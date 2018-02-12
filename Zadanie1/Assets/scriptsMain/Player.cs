@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
 
 
 	public Text napis;
+	public GameObject EndPanel;
 	public timer czas;
 	public GameObject[] M1, M2, M3;
 	public GameObject[] pionki;
@@ -22,39 +23,56 @@ public class Player : MonoBehaviour {
 	private void UpdateMouse()
 	{
 		RaycastHit hit;
-		if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f))
-		{
+		if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 25.0f)) {
 			mouseOver.x = (int)hit.point.x;
 			mouseOver.y = (int)hit.point.z;
-		}
-		else
-		{
+		} else {
 			mouseOver.x = -1;
 			mouseOver.y = -1;
 		}
-		if(hit.collider.tag == "Illegal")
-		{
+		if (hit.collider.tag == "Illegal") {
 			pionek_temp = hit.collider.gameObject;
 			Debug.Log (pionek_temp);
 		}
+		if (hit.collider.tag == "legal") {
+			pionek_temp = hit.collider.gameObject;
+			Debug.Log (pionek_temp.tag);
+		}
 
-	//Debug.Log(mouseOver);
+		//Debug.Log(mouseOver);// działa
+	}
+
+	void CheckLegalityGlobal (pinPair[] all)//do poprawki
+	{
+		foreach (pinPair any in all)
+		{
+			if (any.CheckIfLegalPin (all))
+				any.pin.tag = "legal";
+
+		}
 
 	}
 
 	// Use this for initialization
-	void Start () {
-		czas = new timer (napis);
+	void Start () 	{
+		czas = new timer (napis, EndPanel);
 
 		//deklaracja par--------------------------------
 		for (int i = 0; i <= 9; i++) 
 		{
-			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.y);
+			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.z);
+			if (i == 5) {
+
+			}
 		}
 		pionek_temp = pairs[0].GetPin();
 		pionek_temp.SetActive (false);
-
+		pairs[0].CancelPin();
+		pionki [0] = null;
 		//koniec deklaracji par--------------------------
+		//Debug.Log(pairs[5].x);
+		//Debug.Log(pairs[5].y);
+		Debug.Log(pairs [5].CheckIfLegalPin (pairs));
 	}
 	
 	// Update is called once per frame
@@ -63,7 +81,6 @@ public class Player : MonoBehaviour {
 		UpdateMouse();
 
 	}
-
 
 
 }

@@ -47,24 +47,71 @@ public class pinPair
 	}
 
 
-	bool CheckIfLegalPin( pinPair[] pary)
+	public bool CheckIfLegalPin( pinPair[] pary)
 	{
 		bool legality = false;
-		int xCoor = this.x;//czy to może być jako xCoor?
+		int xCoor = this.x;
 		int yCoor = this.y;
 		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 2, 0 }, { -2, 0 } };
+		Debug.Log (xCoor);
+		Debug.Log (yCoor);
+		Debug.Log ("Begin Checking legality");
+		Debug.Log ("Checking vector");
+		int i = 0;
+		Debug.Log (xCoor + buffor [i, 0]);
+		Debug.Log (yCoor + buffor [i, 1]);
+		foreach (pinPair pair in pary)//10 razy
+		{
 
+			if (pair.x == (xCoor + buffor[i,0]) && pair.y == yCoor + buffor[i,1] && pair.pin)//sprawdzam pozycję otworu i czy jest zajęty, jak tak to idę dalej
+			{
 
+				Debug.Log ("first if passed");
+				Debug.Log (pair.pin);
+				foreach (pinPair pair_ in pary)//10 razy
+				{
+					Debug.Log ("foreach to second if");
+					if (pair_.x == xCoor + 2 * buffor [i, 0] && pair_.y == yCoor + 2 * buffor [i, 1] && pair_.pin == null) {//sprawdzam pozycję otworu i czy jest zajęty, jak nie to legalność
+						legality = true;
+						Debug.Log ("second if passed");
+					}
+				}
+			}
+		}
+	return legality;
+	}
+
+}
+//int xCoor, int yCoor,
+/*	
+ * public bool CheckIfLegalPin( pinPair[] pary)
+	{
+		bool legality = false;
+		int xCoor = this.x;
+		int yCoor = this.y;
+		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 2, 0 }, { -2, 0 } };
+		Debug.Log (xCoor);
+		Debug.Log (yCoor);
+		Debug.Log ("Begin Checking legality");
 		for (int i=0; i<=3; i++)//robię jeden wektor, sprawdzam czy jakaś para się zgadza, robię kolejny wektor, cztery razy
 		{
+			Debug.Log ("Checking vector");
 			foreach (pinPair pair in pary)//10 razy
 			{
-				if (pair.x == (xCoor + buffor[i,0]) && pair.y == yCoor + buffor[i,1] && pair.pin != null)//sprawdzam pozycję otworu i czy jest zajęty, jak tak to idę dalej
+				Debug.Log (xCoor + buffor [i, 0]);
+				Debug.Log (yCoor + buffor [i, 1]);
+				if (pair.x == (xCoor + buffor[i,0]) && pair.y == yCoor + buffor[i,1] && pair.pin)//sprawdzam pozycję otworu i czy jest zajęty, jak tak to idę dalej
 				{
+
+					Debug.Log ("first if passed");
+					Debug.Log (pair.pin);
 					foreach (pinPair pair_ in pary)//10 razy
 					{
-						if (pair_.x == xCoor + 2*buffor[i,0] && pair_.y == yCoor + 2*buffor[i,1] && pair_.pin == null)//sprawdzam pozycję otworu i czy jest zajęty, jak nie to legalność
+						Debug.Log ("foreach to second if");
+						if (pair_.x == xCoor + 2 * buffor [i, 0] && pair_.y == yCoor + 2 * buffor [i, 1] && pair_.pin == null) {//sprawdzam pozycję otworu i czy jest zajęty, jak nie to legalność
 							legality = true;
+							Debug.Log ("second if passed");
+						}
 					}
 				}
 
@@ -72,5 +119,4 @@ public class pinPair
 		}
 		return legality;
 	}
-}
-//int xCoor, int yCoor,
+*/
