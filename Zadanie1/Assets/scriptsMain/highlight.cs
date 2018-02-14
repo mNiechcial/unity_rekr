@@ -25,9 +25,7 @@ public class highlight : MonoBehaviour {
 	}
 	void OnMouseExit()
 	{
-		if (gameObject.CompareTag ("legal")) {
-			copy.gameObject.SetActive (false);
-		}
+		copy.gameObject.SetActive (false);
 	}
 
 

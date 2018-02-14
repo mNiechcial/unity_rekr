@@ -3097,7 +3097,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1683757306}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1de2d43d0f157614ca431807b68cf719, type: 3}
   m_Name: 
@@ -3666,6 +3666,9 @@ MonoBehaviour:
   - {fileID: 850869039}
   - {fileID: 1056280169}
   mouseOver: {x: 0, y: 0}
+  pinSaved: 0
+  holeSaved: 0
+  startOperation: 0
 --- !u!23 &1951105834
 MeshRenderer:
   m_ObjectHideFlags: 0

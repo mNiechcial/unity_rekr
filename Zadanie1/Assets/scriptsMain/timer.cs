@@ -8,12 +8,13 @@ public class timer {
 	public float endTime;
 	public Text timerText;
 	public GameObject EndPanel;		
-
-	public timer (Text timerText_, GameObject EndPanel_)
+	public Text reason;
+	public timer (Text timerText_, GameObject EndPanel_, Text reason_)
 	{
 		endTime = 60f;
 		timerText = timerText_;
 		EndPanel = EndPanel_;
+		reason = reason_;
 	}
 
 
@@ -35,6 +36,7 @@ public class timer {
 		{
 			timerText.text = ("KONIEC CZASU");	
 			EndPanel.gameObject.SetActive (true);
+			reason.text = "Time has ended";
 		}
 	}
 }

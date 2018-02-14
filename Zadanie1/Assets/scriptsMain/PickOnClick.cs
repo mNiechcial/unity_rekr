@@ -21,16 +21,18 @@ public class PickOnClick : MonoBehaviour {
 		{
 			transform.position = Vector3.MoveTowards (transform.position, target, speed);
 		}
-
-		if (movement1) 
-		{
-			transform.position = Vector3.MoveTowards (transform.position, station.transform.position, speed);
-		}
-
 		if (transform.position == target) {
 			movement = false;
 			movement1 = true;
 		}
+		if (movement1) 
+		{
+			transform.position = Vector3.MoveTowards (transform.position, station.transform.position, speed);
+		}
+		if (transform.position == station.transform.position) {
+			movement1 = false;
+		}
+
 	}
 
 
