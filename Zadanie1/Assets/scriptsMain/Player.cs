@@ -17,43 +17,69 @@ public class Player : MonoBehaviour {
 	public Vector2 mouseOver;
 
 	public pinPair[] pairs = new pinPair[10];
-	public pinPair jedna_para;
+	public pinPair pair_temp;
 	private GameObject pionek_temp;
-
+	//-----------------------------------------------------------------------------------------
+	private void LegalityCheckGlobal (pinPair[] pairs)
+	{
+		for (int i = 0; i <= 9; i++) 
+		{
+			if (pairs [i].CheckIfLegalPin (pairs))
+				pairs [i].pin.gameObject.tag = "legal";
+		}
+		GameObject[] pins_temp = GameObject.FindGameObjectsWithTag ("legal");
+		Debug.Log (pins_temp.Length);
+	}
+	//-----------------------------------------------------------------------------------------
+	private void SetAllIllegal (pinPair pairs_)
+	{
+		foreach (pinPair pair in pairs_) 
+		{
+			pair.pin.tag = "illegal";
+		}
+	}
 	private void UpdateMouse()
 	{
 		RaycastHit hit;
-		if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 25.0f)) {
+		if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit, 25.0f)) 
+		{
 			mouseOver.x = (int)hit.point.x;
 			mouseOver.y = (int)hit.point.z;
-		} else {
+		} 
+		else 
+		{
 			mouseOver.x = -1;
 			mouseOver.y = -1;
 		}
-		if (hit.collider.tag == "Illegal") {
-			pionek_temp = hit.collider.gameObject;
-			Debug.Log (pionek_temp);
-		}
-		if (hit.collider.tag == "legal") {
+		if (hit.collider.tag == "Illegal") 
+		{
 			pionek_temp = hit.collider.gameObject;
 			Debug.Log (pionek_temp.tag);
 		}
-
-		//Debug.Log(mouseOver);// działa
-	}
-
-	void CheckLegalityGlobal (pinPair[] all)//do poprawki
-	{
-		foreach (pinPair any in all)
+		if (hit.collider.tag == "legal") 
 		{
-			if (any.CheckIfLegalPin (all))
-				any.pin.tag = "legal";
-
+			pionek_temp = hit.collider.gameObject;
+			Debug.Log (pionek_temp.tag);
 		}
-
+	}
+	private void MouseOnClick()
+	{
+		//Debug.Log ("in function MouseOnClick");
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if(Physics.Raycast (ray, out hit, 25.0f))
+		{
+			if(hit.transform.tag == "legal")
+			{
+				//Debug.Log ("Got a legal target");
+				pionek_temp = hit.collider.gameObject;//zapisuję pionek na później
+				SetAllIllegal(pairs);//illegaluję wszystkie piony, mam zapisany pionek aktywny
+			}
+		}
 	}
 
-	// Use this for initialization
+	//-----------------------------------------------------------------------------------------
+
 	void Start () 	{
 		czas = new timer (napis, EndPanel);
 
@@ -61,34 +87,66 @@ public class Player : MonoBehaviour {
 		for (int i = 0; i <= 9; i++) 
 		{
 			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.z);
-			if (i == 5) {
-
-			}
 		}
 		pionek_temp = pairs[0].GetPin();
 		pionek_temp.SetActive (false);
 		pairs[0].CancelPin();
 		pionki [0] = null;
 		//koniec deklaracji par--------------------------
-		//Debug.Log(pairs[5].x);
-		//Debug.Log(pairs[5].y);
 		Debug.Log(pairs [5].CheckIfLegalPin (pairs));
+		LegalityCheckGlobal (pairs);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		czas.CountTime ();
-		UpdateMouse();
-
+		//UpdateMouse ();
+		if (Input.GetMouseButtonDown (0)) {
+			//Debug.Log ("mouse clickedf");
+			MouseOnClick ();
+	
+		}
 	}
-
 
 }
 
 
 
 /*
- * 		
+ * 	
+ * funkcja nie dziala
+ * 	//-----------------------------------------------------------------------------------------
+private void MovePinTowards(GameObject pin, GameObject home)
+{
+	bool movement = true;
+	bool movement1 = false;
+	Vector3 target, buffor;
+	float speed = 0.001f;
+	buffor = Vector3.zero;
+	buffor.y = 5;
+	target = pin.transform.position + buffor;
+	Debug.Log (target);
+	Debug.Log (pin.transform.position);
+	Debug.Log (buffor);
+	Debug.Log ("inside MovePinTowards");
+	while (movement) 
+	{
+		//pin.transform.position = Vector3.MoveTowards (pin.transform.position, target, speed);
+		pin.transform.Translate(Vector3.up * Time.deltaTime);
+		if (pin.transform.position == target) 
+		{
+			movement1 = true;
+			movement = false;
+		}
+
+	}
+	if (movement) 
+	{
+		pin.transform.position = Vector3.MoveTowards (pin.transform.position, home.transform.position, speed);
+	}
+}
+//-----------------------------------------------------------------------------------------
 
  * funkcja nie dziala
   void CheckLegality() //sprawdzam legalność, bledna funkcja, do poprawy
