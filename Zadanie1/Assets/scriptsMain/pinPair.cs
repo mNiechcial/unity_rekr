@@ -56,7 +56,7 @@ public class pinPair
 		bool legality = false;
 		int xCoor = this.x;
 		int yCoor = this.y;
-		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 }, { 2, 0 }, { -2, 0 } };
+		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 }, { 0, 2 }, { 0, -2 } };
 		//Debug.Log (xCoor);
 		//Debug.Log (yCoor);
 		//Debug.Log ("Begin Checking legality");
@@ -91,7 +91,7 @@ public class pinPair
 		bool legality = false;
 		int xCoor = TargetedPair.x;
 		int yCoor = TargetedPair.y;
-		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 }, { 2, 0 }, { -2, 0 } };
+		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 }, { 0, 2 }, { 0, -2 } };
 		Debug.Log (this.pin);
 		if (this.pin == null) //czy otwór dla którego wywołuję jest pusty?
 		{

@@ -9,25 +9,25 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
 
 	public bool GameOn;
-	public Text napis;
+	public Text timedisplay;
 	public Text reason;
 	public GameObject EndPanel;
 	public timer czas;
-	public GameObject[] M1, M2, M3;
+	public GameObject[] M1;
 	public GameObject[] pionki;
 	public Vector2 mouseOver;
 	public bool pinSaved, holeSaved;
 	public bool startOperation;
-	public pinPair[] pairs = new pinPair[10];
+	public pinPair[] pairs;
 	public pinPair pair_temp1, pair_temp2;
 	private GameObject pionek_temp, otwor_temp;
 	//-----------------------------------------------------------------------------------------
 	private void LegalityCheckGlobalPins ()
 	{
-		for (int i = 0; i <= 9; i++) 
+		foreach (pinPair pair in pairs) 
 		{
-			if (pairs [i].CheckIfLegalPin (pairs))
-				pairs [i].pin.gameObject.tag = "legal";
+			if (pair.CheckIfLegalPin (pairs) && pair.pin != null)
+				pair.pin.gameObject.tag = "legal";
 		}
 		GameObject[] pins_temp = GameObject.FindGameObjectsWithTag ("legal");
 		Debug.Log (pins_temp.Length);
@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 		{
 			GameOn = false;
 			EndPanel.SetActive (true);
+			reason.text = "No more legal moves";
 		}
 	}
 	//-----------------------------------------------------------------------------------------
@@ -98,25 +99,6 @@ public class Player : MonoBehaviour {
 			}
 		} 
 	}
-	/*	else 
-		{
-			mouseOver.x = -1;
-			mouseOver.y = -1;
-		}
-		*/
-		/*if (hit.collider.tag == "Illegal") 
-		{
-			pionek_temp = hit.collider.gameObject;
-			Debug.Log (pionek_temp.tag);
-		}
-		if (hit.collider.tag == "legal") 
-		{
-			pionek_temp = hit.collider.gameObject;
-			Debug.Log (pionek_temp.tag);
-		}
-
-		*/	
-	
 	//-----------------------------------------------------------------------------------------
 	private void SetAllHolesIllegal (pinPair[] pairs_)
 	{
@@ -143,6 +125,10 @@ public class Player : MonoBehaviour {
 				search.CancelPin ();
 				Out.AssignPin (In.pin);
 				In.CancelPin ();
+				pinSaved = false;
+				holeSaved = false;
+				pair_temp1 = null;
+				pair_temp2 = null;
 			}
 
 		}
@@ -152,9 +138,10 @@ public class Player : MonoBehaviour {
 
 	void Start () 	{
 		//SET UP, deklaracja par--------------------------------------------------
-		czas = new timer (napis, EndPanel, reason);
-
-		for (int i = 0; i <= 9; i++) 
+		pairs = new pinPair[M1.Length];
+		czas = new timer (timedisplay, EndPanel, reason);
+		Debug.Log ("M1 length" + M1.Length);
+		for (int i = 0; i <= M1.Length-1; i++) 
 		{
 			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.z);
 		}
@@ -162,6 +149,7 @@ public class Player : MonoBehaviour {
 		pionek_temp.SetActive (false);
 		pairs[0].CancelPin();
 		pionki [0] = null;
+		GameOn = true;
 		//koniec deklaracji par------------------------------------------
 
 		LegalityCheckGlobalPins ();
@@ -174,141 +162,16 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) {//czekaj na kliknięcie, jesli jest, to funkcja
 			UpdateMouse ();
-			//SetAllPinsIllegal(pairs);//illegaluję wszystkie piony, mam zapisany pionek aktywny
 		}
 		if (startOperation)
 			pair_temp1.pin.transform.position = Vector3.MoveTowards (pair_temp1.pin.transform.position, pair_temp2.hole.transform.position, 10f * Time.deltaTime);
 		
 		if (pair_temp1.pin.transform.position == pair_temp2.hole.transform.position) 
 		{
+			SetAllHolesIllegal (pairs);
 			startOperation = false;
 			MovementOperation (pair_temp1, pair_temp2);
+			LegalityCheckGlobalPins ();
 		}
 	}
 }
-
-
-
-/*
- * 	
- * funkcja nie dziala
- * 	//-----------------------------------------------------------------------------------------
-private void MovePinTowards(GameObject pin, GameObject home)
-{
-	bool movement = true;
-	bool movement1 = false;
-	Vector3 target, buffor;
-	float speed = 0.001f;
-	buffor = Vector3.zero;
-	buffor.y = 5;
-	target = pin.transform.position + buffor;
-	Debug.Log (target);
-	Debug.Log (pin.transform.position);
-	Debug.Log (buffor);
-	Debug.Log ("inside MovePinTowards");
-	while (movement) 
-	{
-		//pin.transform.position = Vector3.MoveTowards (pin.transform.position, target, speed);
-		pin.transform.Translate(Vector3.up * Time.deltaTime);
-		if (pin.transform.position == target) 
-		{
-			movement1 = true;
-			movement = false;
-		}
-
-	}
-	if (movement) 
-	{
-		pin.transform.position = Vector3.MoveTowards (pin.transform.position, home.transform.position, speed);
-	}
-}
-//-----------------------------------------------------------------------------------------
-
- * funkcja nie dziala
-  void CheckLegality() //sprawdzam legalność, bledna funkcja, do poprawy
-	{
-		//for (int i = 1; 1<=3; i++)
-		//{
-			GameObject[] a = M1;				
-
-		if (a[3].CompareTag("occ") && a[4].CompareTag("occ") && a[5].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [3].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-		if (a[5].CompareTag("occ") && a[4].CompareTag("occ") && a[3].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [5].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-		if (a[6].CompareTag("occ") && a[7].CompareTag("occ") && a[8].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [6].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-		if (a[7].CompareTag("occ") && a[8].CompareTag("occ") && a[9].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [7].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-		if (a[8].CompareTag("occ") && a[7].CompareTag("occ") && a[6].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [8].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-		if (a[9].CompareTag("occ") && a[8].CompareTag("occ") && a[7].CompareTag("Nocc"))
-		{
-			foreach (GameObject pionek in pionki)
-			{
-				if (pionek.transform.position == a [9].transform.position)
-					pionek.gameObject.tag = "legal";
-
-			}
-		}
-
-
-	private void MouseOnClick(pinPair[] szukaj)
-	{
-		//Debug.Log ("in function MouseOnClick");
-		RaycastHit hit;
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if(Physics.Raycast (ray, out hit, 25.0f))
-		{
-			if(hit.transform.tag == "legal")
-			{
-				//Debug.Log ("Got a legal target");
-				pionek_temp = hit.collider.gameObject;//zapisuję pionek na później
-				foreach (pinPair pair in szukaj)
-				{
-					if (pair.pin == pionek_temp)
-					{
-						pair_temp1 = pair;
-						Debug.Log (pair_temp1);
-					}
-
-				}
-
-			}
-		}
-	}
- */
