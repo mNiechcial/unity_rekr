@@ -610,7 +610,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 189116319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.74, y: 5.79, z: -0.36}
+  m_LocalPosition: {x: 2.74, y: 1.51, z: 1.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3029,7 +3029,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524219723}
   m_LocalRotation: {x: 0.7071069, y: 0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -0.48, y: 14.29, z: -0.3}
+  m_LocalPosition: {x: -0.48, y: 22.1, z: -0.3}
   m_LocalScale: {x: 15, y: 15, z: 13}
   m_Children: []
   m_Father: {fileID: 1482612774}
@@ -4330,6 +4330,7 @@ MonoBehaviour:
   timedisplay: {fileID: 1381928216}
   reason: {fileID: 1900867645}
   EndPanel: {fileID: 915883751}
+  station: {fileID: 189116319}
   M1:
   - {fileID: 1315390550}
   - {fileID: 349233348}
@@ -4341,28 +4342,6 @@ MonoBehaviour:
   - {fileID: 854332164}
   - {fileID: 1190562970}
   - {fileID: 2070909851}
-  M2:
-  - {fileID: 291747259}
-  - {fileID: 911317242}
-  - {fileID: 854332164}
-  - {fileID: 349233348}
-  - {fileID: 1693958995}
-  - {fileID: 1190562970}
-  - {fileID: 1315390550}
-  - {fileID: 982728166}
-  - {fileID: 378998599}
-  - {fileID: 2070909851}
-  M3:
-  - {fileID: 2070909851}
-  - {fileID: 378998599}
-  - {fileID: 1190562970}
-  - {fileID: 982728166}
-  - {fileID: 1693958995}
-  - {fileID: 854332164}
-  - {fileID: 1315390550}
-  - {fileID: 349233348}
-  - {fileID: 911317242}
-  - {fileID: 291747259}
   pionki:
   - {fileID: 364854712}
   - {fileID: 235637018}

@@ -11,7 +11,7 @@ public class timer {
 	public Text reason;
 	public timer (Text timerText_, GameObject EndPanel_, Text reason_)
 	{
-		endTime = 60f;
+		endTime = 180f;
 		timerText = timerText_;
 		EndPanel = EndPanel_;
 		reason = reason_;

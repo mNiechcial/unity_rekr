@@ -92,7 +92,6 @@ public class pinPair
 		int xCoor = TargetedPair.x;
 		int yCoor = TargetedPair.y;
 		int[,] buffor = new int[,] { { 1, 1 }, { -1, -1 }, { 1, -1 }, { -1, 1 }, { 0, 2 }, { 0, -2 } };
-		Debug.Log (this.pin);
 		if (this.pin == null) //czy otwór dla którego wywołuję jest pusty?
 		{
 			for (int i = 0; i <= 5; i++) //robię jeden wektor, sprawdzam czy jakaś para się zgadza, robię kolejny wektor, cztery razy

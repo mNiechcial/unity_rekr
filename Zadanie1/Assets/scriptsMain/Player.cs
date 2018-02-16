@@ -12,6 +12,7 @@ public class Player : MonoBehaviour {
 	public Text timedisplay;
 	public Text reason;
 	public GameObject EndPanel;
+	public GameObject station;
 	public timer czas;
 	public GameObject[] M1;
 	public GameObject[] pionki;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour {
 			mouseOver.x = (int)hit.point.x;
 			mouseOver.y = (int)hit.point.z;
 
-			if (pinSaved && hit.collider.tag == "legal")
+			if (pinSaved && hit.collider.tag == "legal" && pair_temp1.pin.transform.position == station.transform.position)
 			{
 				otwor_temp = hit.collider.gameObject;
 				otwor_temp.tag = "Illegal";
@@ -75,7 +76,6 @@ public class Player : MonoBehaviour {
 					if (temp.hole == hit.collider.gameObject && temp.pin == null) {
 						holeSaved = true;
 						pair_temp2 = temp;//przypisuje parę z otworu
-						Debug.Log ("dupa klick 2");
 						startOperation = true;
 
 					}
@@ -93,7 +93,6 @@ public class Player : MonoBehaviour {
 					{
 						pinSaved = true;
 						pair_temp1 = temp;//przypisuje parę z pinu 
-						Debug.Log("dupa klick 1");
 					}
 				LegalityCheckGlobalHoles (pair_temp1);
 			}
@@ -145,8 +144,7 @@ public class Player : MonoBehaviour {
 		{
 			pairs [i] = new pinPair (M1 [i], pionki [i], (int)M1 [i].transform.position.x, (int)M1 [i].transform.position.z);
 		}
-		pionek_temp = pairs[0].GetPin();
-		pionek_temp.SetActive (false);
+		pairs[0].pin.SetActive (false);
 		pairs[0].CancelPin();
 		pionki [0] = null;
 		GameOn = true;

@@ -10,7 +10,7 @@ public class StartOptions : MonoBehaviour {
 
 	public int sceneToStart = 1;										//Index number in build settings of scene to load if changeScenes is true
 	public bool changeScenes;											//If true, load a new scene when Start is pressed, if false, fade out UI and continue in single scene
-	public bool changeMusicOnStart;										//Choose whether to continue playing menu music or start a new music clip
+	public bool changeMusicOnStart = true;										//Choose whether to continue playing menu music or start a new music clip
 
 
 	[HideInInspector] public bool inMainMenu = true;					//If true, pause button disabled in main menu (Cancel in input manager, default escape key)
@@ -106,6 +106,7 @@ public class StartOptions : MonoBehaviour {
 
 		//Load the selected scene, by scene index number in build settings
 		SceneManager.LoadScene (sceneToStart);
+		playMusic.PlayLevelMusic ();
 	}
 
 	public void HideDelayed()
@@ -138,6 +139,6 @@ public class StartOptions : MonoBehaviour {
 		//Fade up music nearly instantly without a click 
 		playMusic.FadeUp (fastFadeIn);
 		//Play music clip assigned to mainMusic in PlayMusic script
-		playMusic.PlaySelectedMusic (1);
+		//playMusic.PlaySelectedMusic (sceneToStart);
 	}
 }

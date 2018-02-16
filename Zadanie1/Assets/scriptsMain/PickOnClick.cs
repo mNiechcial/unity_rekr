@@ -10,7 +10,7 @@ public class PickOnClick : MonoBehaviour {
 	public GameObject station;
 	// Use this for initialization
 	void Start () {
-		buffor.y = 5;
+		buffor.y = 3;
 		target = transform.position + buffor;
 
 	}
