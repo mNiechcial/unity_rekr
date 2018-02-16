@@ -26,3 +26,4 @@ Jako UI pierwszego panelu u¿yto gotowe rozwi¹zanie z za³¹czonego linku, w którym
 dodano zmianê sceny zgodnie z poziomem trudnoœci,
 nadano muzykê zale¿n¹ od poziomu trudnoœci,
 odrzucono zbêdne opcje. 
+https://assetstore.unity.com/packages/essentials/game-jam-menu-template-40465
